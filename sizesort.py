@@ -51,3 +51,5 @@ def sizemain() :
         data.write(sizelist[index])
         data.write(";")
         print(sizelist[index], end=";")
+
+    data.close()

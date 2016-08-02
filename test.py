@@ -1,9 +1,7 @@
 test = ['one ' , 'two ' , 'es' , ' wrag']
 index =0
-print (len(test))
-for index in range(0,len(test)):
-    print(test[index])
+def now():
+    return True
 
-test.append('awfawda')
-for index in range(0,len(test)):
-    print(test[index])
+if index==0 and now():
+    print('yes') 

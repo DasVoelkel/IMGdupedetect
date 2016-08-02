@@ -1,0 +1,2 @@
+original1.jpg with original.jpg had 80%;
+original.jpg with original1.jpg had 80%;

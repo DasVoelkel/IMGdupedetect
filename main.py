@@ -1,5 +1,5 @@
 import os, sys, inspect
-#import dupecheck
+import dupecheck
 
 from PIL import Image   #I am using Pillow! pip install pillow
 import sizesort
@@ -42,4 +42,4 @@ if userin == 2:
     print('How similar should two pictures be to be considered the same ?(in % 0-100)')
     holder = input()
     dupesim = check.intchecker(holder)
-    #dupecheck.dupemain(dupesim)    #check for dupes, in ALL the pictures
+    dupecheck.dupemain(dupesim)    #check for dupes, in ALL the pictures

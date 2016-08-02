@@ -1,3 +1,11 @@
+import os, sys, inspect, glob
+import dupecheck
+
+from PIL import Image   #I am using Pillow! pip install pillow
+import sizesort
+import check #A intchecker if the input data is ACTUALLY integer
+
+
 def intchecker(x):
     holder = 0
     y=0
@@ -19,7 +27,6 @@ def listchecker(list , x):
     form=str(x)
     y=0
     for index in range(0,len(list)) :
-        print(index)
         if list[index] == form :
             y = 0
         elif list[index] != form :
@@ -29,3 +36,30 @@ def listchecker(list , x):
     if y == 1 :
         list.append(form)   #list = list + x
     return list
+
+def piccounter():
+    x=0
+    for name in glob.glob("*.jpg"):
+        x+=1
+    for name in glob.glob("*.png"):
+        x+=1
+    for name in glob.glob("*.jpeg"):
+        x+=1
+    return x
+
+def checkformat(name1,name2):
+    print(name1)
+    print(name2)
+    pic1 = Image.open(name1)
+    pic2 = Image.open(name2)
+
+    if (pic1.size != pic2.size) :
+        pic1.close()
+        pic2.close()
+        return False
+    elif (pic1.size == pic2.size):
+        pic2.close()
+        pic1.close()
+        return True
+    else :
+        raise RuntimeError
