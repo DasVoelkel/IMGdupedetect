@@ -22,25 +22,36 @@ def intchecker(x):
             print('Your choice  is :' + x)
             return int(x)
 
-def listchecker(list, x, y):
-    index = 0
+def listchecker(slist, x, y):
     #form=str(x)
-    z=0
+
+    if len(slist) == 0:
+        #print("definetly")
+        z=True
+
+
     width = str(x)
     height= str(y)
     form = width + " " + height
-    #print(width + "HERE" + height )
 
-    for index in range(0,len(list)) :
-        if list[index] == form :
-            z = 0
-        elif list[index] != form :
-            z = 1
+    #print(width + " HERE " + height )
+
+    #print(len(slist))
+    z=True
+    for index in slist :
+        if index == form :
+            z = False
 
 
-    if z == 1 :
-        list.append(form)   #list = list + x
-    return list
+
+    if z :
+        #print("just added: " + form )
+        slist.append(form)   #list = list + x
+
+
+
+
+    return slist
 
 def piccounter():
     x=0
@@ -52,19 +63,18 @@ def piccounter():
         x+=1
     return x
 
-def checkformat(name1,name2):
+def checkformat(name1,name2): #pics sind doppelt offen !
+
     #print(name1)
     #print(name2)
-    pic1 = Image.open(name1)
-    pic2 = Image.open(name2)
+    pic1 = name1
+    pic2 = name2
 
     if (pic1.size != pic2.size) :
-        pic1.close()
-        pic2.close()
+
         return False
     elif (pic1.size == pic2.size):
-        pic2.close()
-        pic1.close()
+
         return True
     else :
         raise RuntimeError

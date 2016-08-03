@@ -7,65 +7,60 @@ import pixelcheck
 
 
 
-def dupemain(dupesim):
+def dupemain(dupesim,samplesize):
     dupesim = int(dupesim)
 
-    picnr=check.piccounter()
 
-    mainindex=0
+
     data = open("gensimilarity.txt", "w")
-    similar = ['Testname1','Testname2']
-    matchfound=[' ']
+    similar = [] #similarpictures
+    matchfound=[]
     simresult=0
 
+    fixes=["*.jpg","*.png","*.jpeg"]
 
-    for name1 in glob.glob("*.jpg"):
-        index =0
-        pic1 = Image.open(name1)
+    for fixmain in fixes:
 
-        #match vorhanden dann nicht, wenn nicht dann checken
-        z=0
-        for index in range(0,len(matchfound)):
-            if matchfound[index] == name1 :
-                pic1.close()
-                z=1
+        for name1 in glob.glob(fixmain):
 
+            pic1 = Image.open(name1)
 
-
-
-        if z==0 :
-            z=0
-            for name2 in glob.glob("*.jpg"):
-                index=0
-                pic2 = Image.open(name2)
-                if name1 != name2 and check.checkformat(name1,name2) :
-                    simresult = pixelcheck.pixelmain(name1,name2)
-
-                    if simresult >=dupesim :
-                        similar.append(name1)
-                        similar.append(name2)  #noted for further inspection!
-
-                        matchfound.append(str(name2))
-                        for index in range(0,len(similar)):
-                            data.write(similar[index])
-                            data.write(";\n")
-                            print(similar[index], end=";\n")
-
-
-
-                    #WRITE RESULTS IN A FILE [NAME and NAME , SIMILARITY = simresult ]
-                    data.write(name1)
-                    data.write(" with ")
-                    data.write(name2)
-                    data.write(" had ")
-                    data.write(str(simresult))
-                    data.write("%")
-                    data.write(";\n")
-                    pic2.close()
+            #match vorhanden dann nicht, wenn nicht dann checken
+            z=True
+            for index in matchfound:
+                if index == name1 :
                     pic1.close()
-        else:
-            z=0
+                    z=False
+            if z :
+                z=True
+                #jeder fix mit jedem fix
+                for fixmini in fixes:
+
+                    for name2 in glob.glob(fixmini):
+                        pic2 = Image.open(name2)
+                        if name1 != name2 and check.checkformat(pic1,pic2) :
+                            simresult = pixelcheck.pixelmain(pic1,pic2,samplesize)
+
+                            if simresult >=dupesim :
+                                similar.append(name1)
+                                similar.append(name2)  #noted for further inspection!
+
+                                matchfound.append(str(name2))
 
 
 
+                            #WRITE RESULTS IN A FILE [NAME and NAME , SIMILARITY = simresult ]
+                            data.write(name1)
+                            data.write(" with ")
+                            data.write(name2)
+                            data.write(" had ")
+                            data.write(str(simresult))
+                            data.write("%")
+                            data.write(";\n")
+                        pic2.close()
+            else:
+                z=True
+
+
+            pic1.close()
     data.close()

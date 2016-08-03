@@ -1,8 +1,10 @@
 from PIL import Image
-import glob, os
+
+import glob, os, sys
 
 import random
-from random import randint
-y= randint(0,9999)
-z= randint(0,9999)
-print(str(y) +" "+ str(z))
+
+for i in range(0,999999999999):
+
+
+    print(' ' + str(i) + ' ' * 20,end="\r")
