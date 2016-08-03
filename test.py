@@ -1,7 +1,8 @@
-test = ['one ' , 'two ' , 'es' , ' wrag']
-index =0
-def now():
-    return True
+from PIL import Image
+import glob, os
 
-if index==0 and now():
-    print('yes') 
+import random
+from random import randint
+y= randint(0,9999)
+z= randint(0,9999)
+print(str(y) +" "+ str(z))

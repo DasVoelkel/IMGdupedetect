@@ -1,2 +1,5 @@
-original1.jpg with original.jpg had 80%;
-original.jpg with original1.jpg had 80%;
+Testname1;
+Testname2;
+original1.jpg;
+original.jpg;
+original1.jpg with original.jpg had 100.0%;

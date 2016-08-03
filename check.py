@@ -22,18 +22,23 @@ def intchecker(x):
             print('Your choice  is :' + x)
             return int(x)
 
-def listchecker(list , x):
+def listchecker(list, x, y):
     index = 0
-    form=str(x)
-    y=0
+    #form=str(x)
+    z=0
+    width = str(x)
+    height= str(y)
+    form = width + " " + height
+    #print(width + "HERE" + height )
+
     for index in range(0,len(list)) :
         if list[index] == form :
-            y = 0
+            z = 0
         elif list[index] != form :
-            y = 1
+            z = 1
 
 
-    if y == 1 :
+    if z == 1 :
         list.append(form)   #list = list + x
     return list
 
@@ -48,8 +53,8 @@ def piccounter():
     return x
 
 def checkformat(name1,name2):
-    print(name1)
-    print(name2)
+    #print(name1)
+    #print(name2)
     pic1 = Image.open(name1)
     pic2 = Image.open(name2)
 
