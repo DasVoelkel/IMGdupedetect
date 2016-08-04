@@ -8,7 +8,7 @@ import bar
 
 
 
-def dupemain(dupesim,samplesize):
+def dupemain(path,dupesim,samplesize):
     dupesim = int(dupesim)
     dupemap={}
 
@@ -24,9 +24,10 @@ def dupemain(dupesim,samplesize):
 
     fixes=["*.jpg","*.png","*.jpeg","*.JPEG","*.PNG","*.JPEG"]
 
+
     for fixmain in fixes:
         #print('fixmain: '+fixmain)
-        for name1 in glob.glob(fixmain):
+        for name1 in glob.glob(path+fixmain):
             #print ("comping:"+ name1)
             pic1 = Image.open(name1)
             #match vorhanden dann nicht, wenn nicht dann checken
@@ -42,7 +43,7 @@ def dupemain(dupesim,samplesize):
                 #jeder fix mit jedem fix
                 for fixmini in fixes:
                     #print('fixmini: '+fixmini)
-                    for name2 in glob.glob(fixmini):
+                    for name2 in glob.glob(path+fixmini):
                         #print("mit: "+ name2)
                         pic2 = Image.open(name2)
                         p=True
