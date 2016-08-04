@@ -54,13 +54,13 @@ def listchecker(slist, x, y):
     return slist
 
 def piccounter():
+    
+    fixes=["*.jpg","*.png","*.jpeg","*.JPEG","*.PNG","*.JPEG"]
     x=0
-    for name in glob.glob("*.jpg"):
-        x+=1
-    for name in glob.glob("*.png"):
-        x+=1
-    for name in glob.glob("*.jpeg"):
-        x+=1
+    for fix in fixes:
+        for name in glob.glob(fix):
+            x+=1
+
     return x
 
 def checkformat(name1,name2): #pics sind doppelt offen !

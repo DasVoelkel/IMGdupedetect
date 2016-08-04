@@ -24,12 +24,19 @@ def pixelmain(name1,name2,samplesize,dupesim):
     pic2.convert('RGBA')
     #print(width)
     #print(height)
-    print(pic1)
-    print(pic2)
+    #print(pic1)
+    #print(pic2)
     #print(width)
     #print(height)
 
-    pixels=(width*height)*(samplesize/100)
+
+
+
+    if samplesize < 0 :
+        pixels=32
+
+    else:
+        pixels=(width*height)*(samplesize/100)
         # v     ((math.sqrt(pixels))%2) != 0 or
     while  pixels ==0 :
 
@@ -38,7 +45,7 @@ def pixelmain(name1,name2,samplesize,dupesim):
 
     realpro=str(((pixels/(width*height))*100))
     realpix=str(pixels)
-    print('testing: '+ realpro + ' % = ' + realpix+'pixels'  )
+    #print('testing: '+ realpro + ' % = ' + realpix+'pixels'  )
 
     #for index in range(0,pixels):
     hstep=int(height/pixels)
@@ -86,11 +93,11 @@ def pixelmain(name1,name2,samplesize,dupesim):
                 diff +=1
                 #print('they differentiate')
                 if dupesim == 100:
-                    print('they are different')
+                    #print('they are different')
                     return 0
 
 
 
-    print(str(same)+' / of ' +str(int(pixels**2)) + ' tested pixels, are the same ')
+    #print(str(same)+' / of ' +str(int(pixels)**2) + ' tested pixels, are the same ')
     returnval= ((same / (pixels**2))*100)
     return returnval

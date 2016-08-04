@@ -11,7 +11,7 @@ start = time.time()
 
 
 
-#progress bar
+
 
 
 
@@ -47,6 +47,7 @@ userin = input()
 userin = check.intchecker(userin)
 
 
+
 if userin == 1:
     comp = check.piccounter()
     #bar.setvalues(0,comp)   #function too quick for a loading bar, it bugs out
@@ -60,9 +61,10 @@ if userin == 2:
     print('How similar should two pictures be to be considered the same ?(in % 0-100)')
     similarity = input()
     similarity = check.intchecker(similarity)
-    print('how much ( in %) of the picture should be checked(enter 1 for minimum) ')
-    samplesize = input()
-    samplesize = float(samplesize)
+    print('how much ( in %) of the picture should be checked(enter -1 for default=32Pixels per picture) ')
+    samplesize = str(input())
+    if samplesize == '':
+        samplesize = float(-1)
 
     comp = check.piccounter()
     bar.setvalues(0,comp) #VORLÄUFIG

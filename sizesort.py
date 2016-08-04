@@ -11,7 +11,7 @@ def sizemain():
     sizelist = []
     #print ( str(len(sizelist)))
 
-    fixes=["*.jpg","*.png","*.jpeg"]
+    fixes=["*.jpg","*.png","*.jpeg","*.JPEG","*.PNG","*.JPEG"]
 
 
 

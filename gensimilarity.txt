@@ -1,3 +1,0 @@
-original1.jpg with original.jpg had 100.0%;
-original1.jpg with original (another copy).png had 100.0%;
-original1.jpg with original (copy).png had 100.0%;

@@ -26,6 +26,7 @@ def incstep():
 def redraw():
     global comp
     global progress
-
+    if progress > comp:
+        progress=comp
     bar=int((progress/comp)*100)
-    print('x'*bar + "-"*(100-bar),end='\r')
+    print('x'*bar + "-"*(100-bar)+" progress: "+str(progress)+" of "+str(comp),end='\r')
