@@ -3,8 +3,8 @@ from PIL import Image
 import glob, os, sys
 
 import random
+comp = 1000
 
-for i in range(0,999999999999):
+for i in range(0,comp,20):
 
-
-    print(' ' + str(i) + ' ' * 20,end="\r")
+    print(random.randint(0,20))

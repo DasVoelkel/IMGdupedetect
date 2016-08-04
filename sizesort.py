@@ -17,8 +17,8 @@ def sizemain():
 
     for fix in fixes:
         for name in glob.glob(fix):
-            progress +=1
-            bar.barmain(progress,comp)
+
+            #bar.incstep()
 
             pic = Image.open(name)
             data.write(name)               #print NAME FORMAT SIZE

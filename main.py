@@ -5,6 +5,11 @@ from PIL import Image   #I am using Pillow! pip install pillow
 import sizesort
 import check #A intchecker if the input data is ACTUALLY integer
 import bar
+import time
+
+start = time.time()
+
+
 
 #progress bar
 
@@ -44,15 +49,26 @@ userin = check.intchecker(userin)
 
 if userin == 1:
     comp = check.piccounter()
+    #bar.setvalues(0,comp)   #function too quick for a loading bar, it bugs out
     sizesort.sizemain()  #start Size differentiation
+
+    end = time.time()
+    print(end - start)
 
 
 if userin == 2:
     print('How similar should two pictures be to be considered the same ?(in % 0-100)')
     similarity = input()
     similarity = check.intchecker(similarity)
-    print('What is oyur sample size? (how many pixels should be compared ?)')
+    print('how much ( in %) of the picture should be checked(enter 1 for minimum) ')
     samplesize = input()
-    samplesize = check.intchecker(samplesize)
+    samplesize = float(samplesize)
+
+    comp = check.piccounter()
+    bar.setvalues(0,comp) #VORLÄUFIG
 
     dupecheck.dupemain(similarity,samplesize)    #check for dupes, in ALL the pictures
+
+
+    end = time.time()
+    print(end - start)
