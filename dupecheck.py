@@ -4,6 +4,7 @@ from PIL import Image   #I am using Pillow! pip install pillow
 import sizesort
 import check
 import pixelcheck
+from os.path import basename
 import bar
 
 
@@ -70,11 +71,11 @@ def dupemain(path,dupesim,samplesize):
 
                                     matchfound2.append(str(name2))
 
-                                    dupemap[name2]=name1
+                                    dupemap[basename(name2)]=basename(name1)
 
-                                    data.write(name1)
+                                    data.write(basename(name1))
                                     data.write(";")
-                                    data.write(name2)
+                                    data.write(basename(name2))
                                     data.write(";")
                                     data.write(str(float(simresult)))
                                     data.write(";\n")

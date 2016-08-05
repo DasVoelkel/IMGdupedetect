@@ -6,6 +6,7 @@ import sizesort
 import check #A intchecker if the input data is ACTUALLY integer
 import bar
 import time
+from os.path import basename
 
 
 
@@ -29,7 +30,8 @@ def mainfunction(dir,simularity=100):
     bar.setvalues(0,comp)
 
     end = time.time()
-    print(end - start)
+
 
     dupemap=dupecheck.dupemain(path,simularity,-1)
+    print(end - start)
     return dupemap
