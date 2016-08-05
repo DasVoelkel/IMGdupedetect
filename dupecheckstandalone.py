@@ -47,7 +47,7 @@ if not path.endswith("/"):
 
 
 print('Chose 1, for File sorting by size >> IMGdata.txt ')
-print('Chose 2, for dupechecking with %  of similarity >>gensimilarity')
+print('Chose 2, for dupechecking with %  of similarity >>picture_similarity.txt')
 
 
 
@@ -57,8 +57,8 @@ userin = check.intchecker(userin)
 
 
 if userin == 1:
-    comp = check.piccounter(path)
-    #bar.setvalues(0,comp)   #function too quick for a loading bar, it bugs out
+    #allpics = check.piccounter(path)
+    #bar.setvalues(0,allpics)   #function too quick for a loading bar, it bugs out
     sizesort.sizemain()  #start Size differentiation
 
     end = time.time()
@@ -74,8 +74,8 @@ if userin == 2:
     if samplesize == '':
         samplesize = float(-1)
 
-    comp = check.piccounter(path)
-    bar.setvalues(0,comp) #VORLÄUFIG
+    allpics = check.piccounter(path)
+    bar.setvalues(0,allpics) #VORLÄUFIG
 
     dupecheck.dupemain(path,similarity,float(samplesize))    #check for dupes, in ALL the pictures
 

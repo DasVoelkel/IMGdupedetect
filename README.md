@@ -28,3 +28,8 @@ since it has already compared to that picture
 features:
 there is a loading bar !
 also you can just output a ton of picture data without comparing the pictures
+
+added 5.Aug.16:
+New function , compare 2 picture with one another, default 32
+Pixels chosen automatically, requires EXACT file path for both 
+pic1 and pic2 , if these requirements are not met it will tell you so

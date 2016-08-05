@@ -1,4 +1,4 @@
-import os, sys, inspect, glob
+import os, glob
 
 from PIL import Image   #I am using Pillow! pip install pillow
 import sizesort
@@ -16,14 +16,13 @@ def dupemain(path,dupesim,samplesize):
     dupemap={}
 
 
-    data = open("gensimilarity.txt", "w")
+    data = open("picture_similarity.txt", "w")
 
     #data.write('working with'+ str(dupesim))
     #data.write('similarity \n')
     similar = [] #similarpictures
-    matchfound1=[]
-    matchfound2=[]
-    simresult=0
+    wasonpos1=[]
+    dupesfound=[]
 
     fixes=["*.jpg","*.png","*.jpeg","*.JPEG","*.PNG","*.JPEG"]
 
@@ -34,33 +33,32 @@ def dupemain(path,dupesim,samplesize):
             #print ("comping:"+ name1)
             pic1 = Image.open(name1)
             #match vorhanden dann nicht, wenn nicht dann checken
-            z=True
-            for index in matchfound2:
+            newpos1=True
+            for index in dupesfound:
                 if index == name1 :
                     #print('DUPE')
                     pic1.close()
-                    z=False
+                    newpos1=False
 
-            if z :
-                z=True
+            if newpos1 :
                 #jeder fix mit jedem fix
                 for fixmini in fixes:
                     #print('fixmini: '+fixmini)
                     for name2 in glob.glob(path+fixmini):
                         #print("mit: "+ name2)
                         pic2 = Image.open(name2)
-                        p=True
+                        newpos2=True
                         bar.incprog() # ----
-                        for index in matchfound1:
+                        for index in wasonpos1:
                             if index == name2:
                                 #print('taken')
                                 pic2.close()
-                                p=False
+                                newpos2=False
 
 
 
-                        if p:
-                            p=True
+                        if newpos2:
+                            newpos2=True
                             if name1 != name2 and check.checkformat(pic1,pic2) :
 
                                 simresult = pixelcheck.pixelmain(pic1,pic2,samplesize,dupesim)
@@ -71,9 +69,9 @@ def dupemain(path,dupesim,samplesize):
 
                                     bar.incstep() #---
 
-                                    matchfound2.append(str(name2))
+                                    dupesfound.append(str(name2))
 
-                                    dupemap[basename(name2)]=basename(name1)
+                                    dupemap[basename(name2)]=basename(name1) #create and expand dictionary
 
                                     data.write(basename(name1))
                                     data.write(";")
@@ -86,20 +84,20 @@ def dupemain(path,dupesim,samplesize):
 
 
                                 #WRITE RESULTS IN A FILE [NAME and NAME , SIMILARITY = simresult ]
-                                matchfound1.append(str(name1))
+                                wasonpos1.append(str(name1))
 
 
                             pic2.close()
                         else:
-                            p=True
+                            newpos2=True
             else:
-                z=True
+                newpos1=True
 
 
             pic1.close()
     data.close()
 
-    print('\ntotal: '+str(check.piccounter(path))+ '  Dupes: ' + str(len(matchfound2))+ '  Unique: '+ str(  (check.piccounter(path))-(len(matchfound2))   ))
+    print('\ntotal: '+str(check.piccounter(path))+ '  Dupes: ' + str(len(dupesfound))+ '  Unique: '+ str(  (check.piccounter(path))-(len(matchfound2))   ))
 
 
     #return DICTIONARY MAP!

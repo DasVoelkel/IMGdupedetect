@@ -38,16 +38,16 @@ def pixelmain(name1,name2,samplesize,dupesim):
     else:
         pixels=(width*height)*(samplesize/100)
         # v     ((math.sqrt(pixels))%2) != 0 or
-    while  pixels ==0 :
+    if  pixels ==0 :
 
         pixels+=1
-        pixels = math.ceil(pixels)
 
-    realpro=str(((pixels/(width*height))*100))
-    realpix=str(pixels)
+    #debugging output
+    #realpro=str(((pixels/(width*height))*100))
+    #realpix=str(pixels)
     #print('testing: '+ realpro + ' % = ' + realpix+'pixels'  )
 
-    #for index in range(0,pixels):
+    
     hstep=int(height/pixels)
     wstep=int(width/pixels)
     if hstep == 0:

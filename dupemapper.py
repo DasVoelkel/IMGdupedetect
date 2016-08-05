@@ -23,8 +23,8 @@ def mainfunction(dir,simularity=100):
         return main
 
 
-    comp = check.piccounter(path)
-    bar.setvalues(0,comp)
+    allpics = check.piccounter(path)
+    bar.setvalues(0,allpics)
 
 
 
