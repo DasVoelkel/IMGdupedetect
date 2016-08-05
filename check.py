@@ -8,14 +8,14 @@ import check #A intchecker if the input data is ACTUALLY integer
 
 
 def intchecker(x):
-    y=True
+    isint=True
     while y :
-        y=False
+        isint=False
         try:
             int(x)
         except ValueError:
             print('Wrong Data Type, int only!')
-            y=True
+            isint=True
             x=input()
         else:
             print('Your choice  is :' + str(x))
