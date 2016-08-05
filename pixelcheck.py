@@ -38,6 +38,13 @@ def pixelcompare(name1,name2,samplesize,dupesim):
     else:
         pixels=(width*height)*(samplesize/100)
         # v     ((math.sqrt(pixels))%2) != 0 or
+
+
+    if pixels > (height*width):
+        pixels= (height*width)
+        print('yes')
+        print(pixels)
+
     if  pixels ==0 :
 
         pixels+=1
@@ -88,9 +95,11 @@ def pixelcompare(name1,name2,samplesize,dupesim):
             if pixel1 == pixel2:
 
                 same +=1
+
                 #print('they are the same')
             else :
                 diff +=1
+
                 #print('they differentiate')
                 if dupesim == 100:
                     #print('they are different')
@@ -99,5 +108,6 @@ def pixelcompare(name1,name2,samplesize,dupesim):
 
 
     #print(str(same)+' / of ' +str(int(pixels)**2) + ' tested pixels, are the same ')
-    compareresult= ((same / (pixels**2))*100)
+
+    compareresult= ((same / pixels)*100)
     return compareresult

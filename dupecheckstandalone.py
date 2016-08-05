@@ -75,7 +75,7 @@ if userin == 2:
         samplesize = float(-1)
 
     allpics = check.piccounter(path)
-    bar.setvalues(0,allpics) #VORLÄUFIG
+    bar.setvalues(0,allpics,path) #VORLÄUFIG
 
     dupecheck.checkfordupe(path,similarity,float(samplesize))    #check for dupes, in ALL the pictures
 

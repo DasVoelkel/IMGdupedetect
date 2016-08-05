@@ -24,7 +24,7 @@ def dupemapper(dir,simularity=100):
 
 
     allpics = check.piccounter(path)
-    bar.setvalues(0,allpics)
+    bar.setvalues(0,allpics,path)
 
 
 

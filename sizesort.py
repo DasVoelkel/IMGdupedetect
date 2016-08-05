@@ -11,7 +11,7 @@ def sizesort():
     sizelist = []
     #print ( str(len(sizelist)))
 
-    fixes=["*.jpg","*.png","*.jpeg","*.JPEG","*.PNG","*.JPEG"]
+    fixes=["*.jpg","*.png","*.jpeg","*.JPG","*.PNG","*.JPEG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
 
 
 
