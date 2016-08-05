@@ -59,7 +59,7 @@ userin = check.intchecker(userin)
 if userin == 1:
     #allpics = check.piccounter(path)
     #bar.setvalues(0,allpics)   #function too quick for a loading bar, it bugs out
-    sizesort.sizemain()  #start Size differentiation
+    sizesort.sizesort()  #start Size differentiation
 
     end = time.time()
     print(end - start)
@@ -77,7 +77,7 @@ if userin == 2:
     allpics = check.piccounter(path)
     bar.setvalues(0,allpics) #VORLÄUFIG
 
-    dupecheck.dupemain(path,similarity,float(samplesize))    #check for dupes, in ALL the pictures
+    dupecheck.checkfordupe(path,similarity,float(samplesize))    #check for dupes, in ALL the pictures
 
 
     end = time.time()

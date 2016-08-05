@@ -3,7 +3,7 @@ import glob, os
 import check
 import bar
 
-def sizemain():
+def sizesort():
     #im = Image.open("original.jpg")
     #print(im.format, im.size, im.mode)
     data = open("IMGDATA.txt", "w")

@@ -9,7 +9,7 @@ import bar
 
 
 
-def dupemain(path,dupesim,samplesize):
+def checkfordupe(path,dupesim,samplesize):
     #print(path)
     samplesize=float(samplesize)
     dupesim = int(dupesim)
@@ -61,7 +61,7 @@ def dupemain(path,dupesim,samplesize):
                             newpos2=True
                             if name1 != name2 and check.checkformat(pic1,pic2) :
 
-                                simresult = pixelcheck.pixelmain(pic1,pic2,samplesize,dupesim)
+                                simresult = pixelcheck.pixelcompare(pic1,pic2,samplesize,dupesim)
 
                                 if simresult >=dupesim :
                                     similar.append(name1)
@@ -97,7 +97,7 @@ def dupemain(path,dupesim,samplesize):
             pic1.close()
     data.close()
 
-    print('\ntotal: '+str(check.piccounter(path))+ '  Dupes: ' + str(len(dupesfound))+ '  Unique: '+ str(  (check.piccounter(path))-(len(matchfound2))   ))
+    print('\ntotal: '+str(check.piccounter(path))+ '  Dupes: ' + str(len(dupesfound))+ '  Unique: '+ str(  (check.piccounter(path))-(len(dupesfound))   ))
 
 
     #return DICTIONARY MAP!
@@ -106,22 +106,22 @@ def dupemain(path,dupesim,samplesize):
     return dupemap
 
 
-def twocomp(dir1,dir2):
+def twocompare(dir1,dir2):
     try :
         pic1=Image.open(dir1)
     except FileNotFoundError:
-        print('wrong file path on path1'+path1)
+        print('wrong file path on path1'+dir1)
         return None
         #NOT FileNotFoundError
 
     try:
         pic2=Image.open(dir2)
     except FileNotFoundError:
-        print('wrong file path on path2'+path2)
+        print('wrong file path on path2'+dir2)
         return None
 
 
-    simresult = pixelcheck.pixelmain(pic1,pic2,-1,0)
+    simresult = pixelcheck.pixelcompare(pic1,pic2,-1,0)
 
     pic1.close()
     pic2.close()

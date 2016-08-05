@@ -9,8 +9,8 @@ import check #A intchecker if the input data is ACTUALLY integer
 import math
 
 
-def pixelmain(name1,name2,samplesize,dupesim):
-    #print('pixelmain here')
+def pixelcompare(name1,name2,samplesize,dupesim):
+    #print('pixelcompare here')
 
     index =0
     pic1 = name1
@@ -47,7 +47,7 @@ def pixelmain(name1,name2,samplesize,dupesim):
     #realpix=str(pixels)
     #print('testing: '+ realpro + ' % = ' + realpix+'pixels'  )
 
-    
+
     hstep=int(height/pixels)
     wstep=int(width/pixels)
     if hstep == 0:
@@ -99,5 +99,5 @@ def pixelmain(name1,name2,samplesize,dupesim):
 
 
     #print(str(same)+' / of ' +str(int(pixels)**2) + ' tested pixels, are the same ')
-    returnval= ((same / (pixels**2))*100)
-    return returnval
+    compareresult= ((same / (pixels**2))*100)
+    return compareresult

@@ -7,7 +7,7 @@ import bar #implements a loading bar, becasue just waiting is too boring
 import time   # so you can measure and see the runtime of the whole programm
 from os.path import basename # needed for shortening the filename out of path/filename
 
-def mainfunction(dir,simularity=100):
+def dupemapper(dir,simularity=100):
     #path = os.path.dirname(os.path.realpath(__file__))
     path = dir
     start = time.time()
@@ -29,7 +29,7 @@ def mainfunction(dir,simularity=100):
 
 
 
-    dupemap=dupecheck.dupemain(path,simularity,-1)
+    dupemap=dupecheck.checkfordupe(path,simularity,-1)
     end = time.time()
     print('it took :' + str(end - start))
     return dupemap
@@ -37,7 +37,7 @@ def mainfunction(dir,simularity=100):
 def exactcompare(dir1,dir2):
     start = time.time()
 
-    dupenumber = dupecheck.twocomp(dir1,dir2)
+    dupenumber = dupecheck.twocompare(dir1,dir2)
 
     end = time.time()
     print('it took :' + str(end - start))
