@@ -53,12 +53,12 @@ def listchecker(slist, x, y):
 
     return slist
 
-def piccounter():
-    
+def piccounter(path):
+
     fixes=["*.jpg","*.png","*.jpeg","*.JPEG","*.PNG","*.JPEG"]
     x=0
     for fix in fixes:
-        for name in glob.glob(fix):
+        for name in glob.glob(path+fix):
             x+=1
 
     return x

@@ -19,23 +19,31 @@ start = time.time()
 # ============ Path set and error detection! =============
 print('Where are the pics located? e.g. : /home/pictures ')
 path = os.path.dirname(os.path.realpath(__file__))
-print(path +"/pics", end="")
-path = path + "/pics" + input()
+print(path +"/pics/", end="")
+path = path + "/pics/" + input()
 print(path)
 
 y=True
 while y :
     y=False
     try :
-        os.chdir(path)
+        os.path.isdir(path)
     except FileNotFoundError :
         print('This file Path does not exsist!')
         y=True
 
         path = os.path.dirname(os.path.realpath(__file__))
-        print(path +"/pics", end="")
-        path = path + "/pics" +input()
+        print(path +"/pics/", end="")
+        path = path + "/pics/" +input()
+        print(path)
 #=============================================================END
+if not path.endswith("/"):
+    path=path+'/'
+
+
+
+
+
 
 
 print('Chose 1, for File sorting by size >> IMGdata.txt ')
@@ -49,7 +57,7 @@ userin = check.intchecker(userin)
 
 
 if userin == 1:
-    comp = check.piccounter()
+    comp = check.piccounter(path)
     #bar.setvalues(0,comp)   #function too quick for a loading bar, it bugs out
     sizesort.sizemain()  #start Size differentiation
 
@@ -66,10 +74,10 @@ if userin == 2:
     if samplesize == '':
         samplesize = float(-1)
 
-    comp = check.piccounter()
+    comp = check.piccounter(path)
     bar.setvalues(0,comp) #VORLÄUFIG
 
-    dupecheck.dupemain(similarity,samplesize)    #check for dupes, in ALL the pictures
+    dupecheck.dupemain(path,similarity,float(samplesize))    #check for dupes, in ALL the pictures
 
 
     end = time.time()

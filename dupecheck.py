@@ -10,6 +10,8 @@ import bar
 
 
 def dupemain(path,dupesim,samplesize):
+    #print(path)
+    samplesize=float(samplesize)
     dupesim = int(dupesim)
     dupemap={}
 
@@ -97,10 +99,32 @@ def dupemain(path,dupesim,samplesize):
             pic1.close()
     data.close()
 
-    print('\ntotal: '+str(check.piccounter())+ '  Dupes: ' + str(len(matchfound2))+ '  Unique: '+ str(  (check.piccounter())-(len(matchfound2))   ))
+    print('\ntotal: '+str(check.piccounter(path))+ '  Dupes: ' + str(len(matchfound2))+ '  Unique: '+ str(  (check.piccounter(path))-(len(matchfound2))   ))
 
 
     #return DICTIONARY MAP!
 
 
     return dupemap
+
+
+def twocomp(dir1,dir2):
+    try :
+        pic1=Image.open(dir1)
+    except FileNotFoundError:
+        print('wrong file path on path1'+path1)
+        return None
+        #NOT FileNotFoundError
+
+    try:
+        pic2=Image.open(dir2)
+    except FileNotFoundError:
+        print('wrong file path on path2'+path2)
+        return None
+
+
+    simresult = pixelcheck.pixelmain(pic1,pic2,-1,0)
+
+    pic1.close()
+    pic2.close()
+    return simresult
