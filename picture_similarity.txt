@@ -1,12 +1,1 @@
-B03_371.jpg;B02_251.jpg;3200.0;
-B03_371.jpg;B05_201.jpg;3200.0;
-F06_030.jpg;F04_030.jpg;3200.0;
-F06_030.jpg;F02_030.jpg;3200.0;
-F06_030.jpg;F05_030.jpg;3200.0;
-F06_030.jpg;F03_030.jpg;3200.0;
-F06_030.jpg;F01_030.jpg;3200.0;
-F06_030.jpg;F07_030.jpg;3200.0;
-F06_030.jpg;F08_030.jpg;3200.0;
-F06_030.jpg;BRIDG013.JPG;3200.0;
-F06_030.jpg;BRIDG039.JPG;3200.0;
-F01_087.jpg;F08_087.jpg;3200.0;
+16BIT_bicycle_stand_special-bikes_001_MAP.jpg;16BIT_bicycle_stand_special-bikes_001_specular_MAP.jpg;0.0;

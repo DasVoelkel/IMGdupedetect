@@ -3,13 +3,13 @@ import dupecheck
 
 from PIL import Image   #I am using Pillow! pip install pillow
 import sizesort
-import check #A intchecker if the input data is ACTUALLY integer
-
-
+#import check #A intchecker if the input data is ACTUALLY integer
+import io
+from os.path import basename
 
 def intchecker(x):
     isint=True
-    while y :
+    while isint :
         isint=False
         try:
             int(x)
@@ -95,3 +95,31 @@ def ETAcalc(path):
             if fix == '*.dds' or fix=='*.DDS':
                 ETA=ETA+ddstime
     return ETA
+
+
+def getsizedictionary(path):
+    print('creating sizedic')
+    fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
+    sizedictionary={}
+    for fix in fixes:
+        for name in glob.glob(path+fix):
+            print(name)
+            pic=Image.open(name)
+            sizedictionary[name]=pic.size
+            pic.close()
+    print('done')
+    return sizedictionary
+
+
+
+
+
+def getstatedictionary(path):
+    print('creating statedic')
+    statedictionary={}
+    fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
+    for fix in fixes:
+        for name in glob.glob(path+fix):
+            statedictionary[name] = int(0)
+    print('done')
+    return statedictionary
