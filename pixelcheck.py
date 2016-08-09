@@ -9,23 +9,25 @@ import check #A intchecker if the input data is ACTUALLY integer
 import math
 
 
-def pixelcompare(pic1,name2,samplesize,dupesim):
+def pixelcompare(pic1,pic2,samplesize,dupesim):
     #print('pixelcompare here')
 
     index =0
 
-    pictureobjects={}
 
 
-    pic2=Image.open(name2)
+    pic1=pic1.convert('RGBA')
+    pic2=pic2.convert('RGBA')
 
+    #pic2=Image.open(name2)
 
     width, height = pic2.size
      #pixels
     same=0
     diff=0
+    compared =0
 
-    pic2.convert('RGBA')
+    #pic2.convert('RGBA')
     #print(width)
     #print(height)
     #print(pic1)
@@ -96,19 +98,21 @@ def pixelcompare(pic1,name2,samplesize,dupesim):
             #print("testing"+str(randwidth)+" "+str(randheight))
             #print("values: " +str(r2) +" "+ str(g2) + " "+str(b2))
             #print("=========")
-
+            compared +=1
             if pixel1 == pixel2:
 
                 same +=1
+
 
                 #print('they are the same')
             else :
                 diff +=1
 
+
                 #print('they differentiate')
                 if dupesim == 100:
                     #print('they are different')
-                    pic2.close()
+                    #pic2.close()
                     return 0
 
 
@@ -117,6 +121,9 @@ def pixelcompare(pic1,name2,samplesize,dupesim):
     #print(same)
     #print(pixels)
 
-    compareresult= int(((same /(height/((height/(pixels/2))))**2 )*100))
-    pic2.close()
+    compareresult= int(((same /compared ))*100)
+    if compareresult>100:
+        compareresult=100
+    #pic2.close()
+    #print(compareresult)
     return compareresult

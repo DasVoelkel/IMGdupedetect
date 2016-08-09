@@ -15,12 +15,15 @@ def checkfordupe(path,dupesim,samplesize):
     samplesize=float(samplesize)
     dupesim = int(dupesim)
     dupemap={}
-    sizedictionary=check.getsizedictionary(path)
+    sizedictionary,sizelist=check.getsizedictionaryandsizelist(path)
     statedictionary=check.getstatedictionary(path)
     dupesfound=[]
 
 
     data = open("picture_similarity.txt", "w")
+    log = open("pic_similarityLOG.txt","w")
+
+    debug=False
 
 
     #data.write('working with'+ str(dupesim))
@@ -31,50 +34,55 @@ def checkfordupe(path,dupesim,samplesize):
     # 2 -> is a dupe
 
     #fixes=["*.jpg","*.png","*.jpeg","*.JPG","*.PNG","*.JPEG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
-
-    for name1 in sizedictionary:
-        if statedictionary[name1]==2 or statedictionary[name1]==1:
-            continue
-
-        statedictionary[name1]=1
-        start=time.time()
-        print('opening: '+name1)
-        pic1=Image.open(name1)
-        print('converting: '+name1)
-        pic1.convert('RGBA')
-        end=time.time()
-        print('done took: ' + str(end-start))
-
-
-        #bar.incstep()
-        for name2 in sizedictionary:
-            if name1 == name2 or sizedictionary[name1] != sizedictionary[name2] or statedictionary[name2]==1 or statedictionary[name2] == 2 :
-                bar.incprog()
+    for sizes in sizelist:
+        loaded=check.loadobjects(sizes,sizedictionary)
+        for name1 in loaded:
+            if statedictionary[name1]==2 or statedictionary[name1]==1:
                 continue
-            start=time.time()
-
-            print('comparing: ' + name1 + ' ' + str(sizedictionary[name1])+ ' with :' +name2 + ' ' + str(sizedictionary[name2]))
-            simresult = pixelcheck.pixelcompare(pic1,name2,samplesize,dupesim)
-            end=time.time()
-            print('done took: '+ str(end-start))
-
-            if simresult >= dupesim:
-                statedictionary[name2]=2
-                dupesfound.append(str(name2))
-                #similar.append(name1)
-                #similar.append(name2)
-                dupemap[basename(name2)]=basename(name1)
-
-            data.write(basename(name1))
-            data.write(";")
-            data.write(basename(name2))
-            data.write(";")
-            data.write(str(float(simresult)))
-            data.write(";\n")
-        pic1.close()
+            statedictionary[name1]=1
 
 
+
+            #bar.incstep()
+            for name2 in loaded:
+                if name1 == name2 or sizedictionary[name1] != sizedictionary[name2] or statedictionary[name2]==1 or statedictionary[name2] == 2 :
+                    bar.incprog()
+                    continue
+
+
+                start=time.time()
+                if debug : print('comparing: ' + name1 + ' ' + str(sizedictionary[name1])+ ' with :' +name2 + ' ' + str(sizedictionary[name2]))
+                simresult = pixelcheck.pixelcompare(loaded[name1],loaded[name2],samplesize,dupesim)
+                end=time.time()
+                if debug : print('done took: '+ str(end-start))
+
+                if simresult >= dupesim:
+                    statedictionary[name2]=2
+                    dupesfound.append(str(name2))
+                    #similar.append(name1)
+                    #similar.append(name2)
+                    dupemap[basename(name2)]=basename(name1)
+                    data.write(basename(name1))
+                    data.write(";")
+                    data.write(basename(name2))
+                    data.write(";")
+                    data.write(str(float(simresult)))
+                    data.write(";\n")
+
+                log.write(basename(name1))
+                log.write(";")
+                log.write(basename(name2))
+                log.write(";")
+                log.write(str(float(simresult)))
+                log.write(";\n")
+            #pic1.close()
+
+        #check.unloadobjects(loaded)
     data.close()
+    log.close()
+
+    check.unloadobjects(loaded)
+
     print('\ntotal: '+str(check.piccounter(path))+ '  Dupes: ' + str(len(dupesfound))+ '  Unique: '+ str(  (check.piccounter(path))-(len(dupesfound))   ))
     return dupemap
 

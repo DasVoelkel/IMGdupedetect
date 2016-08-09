@@ -97,18 +97,59 @@ def ETAcalc(path):
     return ETA
 
 
-def getsizedictionary(path):
-    print('creating sizedic')
+def getsizedictionaryandsizelist(path):
+    print('creating sizedic/sizelist')
     fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
     sizedictionary={}
+    sizelist={}
+    namelist=[]
     for fix in fixes:
         for name in glob.glob(path+fix):
             print(name)
             pic=Image.open(name)
+
+
             sizedictionary[name]=pic.size
+            #pic.convert('RGBA')
+
+            sizelist[pic.size]=namelist.append(name)
+
             pic.close()
+            #objectdictionary[name]=pic
+
     print('done')
-    return sizedictionary
+    return sizedictionary,sizelist
+
+def loadobjects(size,sizedictionary):
+    loaded={}
+    loaded.clear()
+    print('unloading loaded files')
+    for name in loaded:
+        temp=loaded[name]
+        temp.close()
+
+
+
+    print('loading'+str(size))
+    for name in sizedictionary:
+        if sizedictionary[name] == size:
+            pic=Image.open(name)
+            temp=pic.copy()             #workaround OSError: [Errno 24] Too many open files - bug
+            loaded[name]=temp
+            pic.close()
+
+    return loaded
+
+
+
+
+def unloadobjects(loaded):
+    print('unloading')
+    for name in loaded:
+        temp=loaded[name]
+        temp.close()
+
+
 
 
 
