@@ -2,7 +2,7 @@ import dupemapper
 import os
 
 
-main=dupemapper.dupemapper("/home/dasvoelkel/Desktop/IMGdupedetect/pics")
+main=dupemapper.dupemapper()
 
 #for key in main:
 #    print (key + ' ' + main[key])

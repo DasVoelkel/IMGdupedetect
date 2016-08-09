@@ -7,6 +7,9 @@ import sizesort
 import io
 from os.path import basename
 
+global debug
+debug=False
+
 def intchecker(x):
     isint=True
     while isint :
@@ -98,7 +101,7 @@ def ETAcalc(path):
 
 
 def getsizedictionaryandsizelist(path):
-    print('creating sizedic/sizelist')
+    print('creating sizedic/sizelist\n')
     fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
     sizedictionary={}
     sizelist={}
@@ -117,20 +120,20 @@ def getsizedictionaryandsizelist(path):
             pic.close()
             #objectdictionary[name]=pic
 
-    print('done')
+    print('done\n')
     return sizedictionary,sizelist
 
 def loadobjects(size,sizedictionary):
     loaded={}
     loaded.clear()
-    print('unloading loaded files')
+    print('unloading loaded files\n')
     for name in loaded:
         temp=loaded[name]
         temp.close()
 
 
 
-    print('loading'+str(size))
+    print('loading'+str(size)+'\n')
     for name in sizedictionary:
         if sizedictionary[name] == size:
             pic=Image.open(name)
@@ -144,7 +147,7 @@ def loadobjects(size,sizedictionary):
 
 
 def unloadobjects(loaded):
-    print('unloading')
+    print('unloading\n')
     for name in loaded:
         temp=loaded[name]
         temp.close()
@@ -156,11 +159,11 @@ def unloadobjects(loaded):
 
 
 def getstatedictionary(path):
-    print('creating statedic')
+    print('creating statedic\n')
     statedictionary={}
     fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
     for fix in fixes:
         for name in glob.glob(path+fix):
             statedictionary[name] = int(0)
-    print('done')
+    print('done\n')
     return statedictionary

@@ -10,7 +10,7 @@ import time
 
 
 
-def checkfordupe(path,dupesim,samplesize):
+def checkfordupe(path,dupesim,samplesize,output):
     #print(path)
     samplesize=float(samplesize)
     dupesim = int(dupesim)
@@ -18,10 +18,13 @@ def checkfordupe(path,dupesim,samplesize):
     sizedictionary,sizelist=check.getsizedictionaryandsizelist(path)
     statedictionary=check.getstatedictionary(path)
     dupesfound=[]
+    enableoutput=isinstance(output, str)
 
-
-    data = open("picture_similarity.txt", "w")
-    log = open("pic_similarityLOG.txt","w")
+    if enableoutput:
+        dataname = os.path.join(output+"picture_similarity.txt")
+        data = open(dataname, "w")
+        logname = os.path.join(output+"pic_similarityLOG.txt")
+        log = open(logname,"w")
 
     debug=False
 
@@ -45,8 +48,8 @@ def checkfordupe(path,dupesim,samplesize):
 
             #bar.incstep()
             for name2 in loaded:
+                bar.incprog()
                 if name1 == name2 or sizedictionary[name1] != sizedictionary[name2] or statedictionary[name2]==1 or statedictionary[name2] == 2 :
-                    bar.incprog()
                     continue
 
 
@@ -62,24 +65,27 @@ def checkfordupe(path,dupesim,samplesize):
                     #similar.append(name1)
                     #similar.append(name2)
                     dupemap[basename(name2)]=basename(name1)
-                    data.write(basename(name1))
-                    data.write(";")
-                    data.write(basename(name2))
-                    data.write(";")
-                    data.write(str(float(simresult)))
-                    data.write(";\n")
+                    if enableoutput:
+                        data.write(basename(name1))
+                        data.write(";")
+                        data.write(basename(name2))
+                        data.write(";")
+                        data.write(str(float(simresult)))
+                        data.write(";\n")
 
-                log.write(basename(name1))
-                log.write(";")
-                log.write(basename(name2))
-                log.write(";")
-                log.write(str(float(simresult)))
-                log.write(";\n")
+                if enableoutput:
+                    log.write(basename(name1))
+                    log.write(";")
+                    log.write(basename(name2))
+                    log.write(";")
+                    log.write(str(float(simresult)))
+                    log.write(";\n")
             #pic1.close()
 
         #check.unloadobjects(loaded)
-    data.close()
-    log.close()
+    if enableoutput:
+        data.close()
+        log.close()
 
     check.unloadobjects(loaded)
 

@@ -34,4 +34,4 @@ def redraw():
     if progress > allpics:
         progress=allpics
     bar=int((progress/allpics)*100)
-    #print('x'*bar + "-"*(100-bar)+" progress: "+str(progress)+" of "+str(allpics) + "finished in (ETA:)" + str(ETA)+" s")
+    print('x'*bar + "-"*(100-bar)+" progress: "+str(progress)+" of "+str(allpics) + "finished in (ETA:)" + str(ETA)+" s")

@@ -69,7 +69,7 @@ if userin == 2:
     print('How similar should two pictures be to be considered the same ?(in % 0-100)')
     similarity = input()
     similarity = check.intchecker(similarity)
-    print('how much ( in %) of the picture should be checked(enter -1 for default=32Pixels per picture) ')
+    print('how much ( in %) of the picture should be checked(enter -1 for default=16*16 Pixels per picture) ')
     samplesize = str(input())
     if samplesize == '':
         samplesize = float(-1)
@@ -77,7 +77,7 @@ if userin == 2:
     allpics = check.piccounter(path)
     bar.setvalues(0,allpics,path) #VORLÄUFIG
 
-    dupecheck.checkfordupe(path,similarity,float(samplesize))    #check for dupes, in ALL the pictures
+    dupecheck.checkfordupe(path,similarity,float(samplesize),path)    #check for dupes, in ALL the pictures
 
 
     end = time.time()
