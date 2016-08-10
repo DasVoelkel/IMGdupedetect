@@ -17,10 +17,10 @@ start = time.time()
 
 
 # ============ Path set and error detection! =============
-print('Where are the pics located? e.g. : /home/pictures ')
-path = os.path.dirname(os.path.realpath(__file__))
-print(path +"/pics/", end="")
-path = path + "/pics/" + input()
+print('Where are the pics located? e.g. : /home/pictures (/User <- will create /U escape charactere! use \U)')
+#path = os.path.dirname(os.path.realpath(__file__))
+#print(path +"/pics/", end="")
+path =  input()
 print(path)
 
 y=True
@@ -33,10 +33,14 @@ while y :
         y=True
 
         path = os.path.dirname(os.path.realpath(__file__))
-        print(path +"/pics/", end="")
-        path = path + "/pics/" +input()
+        #print(path +"/pics/", end="")
+        path = input()
         print(path)
 #=============================================================END
+
+
+
+
 if not path.endswith("/"):
     path=path+'/'
 

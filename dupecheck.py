@@ -60,6 +60,7 @@ def checkfordupe(path,dupesim,samplesize,output):
                 if debug : print('done took: '+ str(end-start))
 
                 if simresult >= dupesim:
+                    bar.incstep()
                     statedictionary[name2]=2
                     dupesfound.append(str(name2))
                     #similar.append(name1)
