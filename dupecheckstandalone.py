@@ -17,7 +17,7 @@ start = time.time()
 
 
 # ============ Path set and error detection! =============
-print('Where are the pics located? e.g. : /home/pictures (/User <- will create /U escape charactere! use \U)')
+print('Where are the pics located? ')
 #path = os.path.dirname(os.path.realpath(__file__))
 #print(path +"/pics/", end="")
 path =  input()
