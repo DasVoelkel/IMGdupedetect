@@ -126,12 +126,13 @@ def getsizedictionaryandsizelist(path):
 
 def loadobjects(size,sizedictionary):
     loaded={}
-    loaded.clear()
-    if debug:print('unloading loaded files\n')
-    for name in loaded:
-        temp=loaded[name]
-        temp.close()
 
+    #if debug:print('unloading loaded files\n')
+    #for name in loaded:
+    #    temp=loaded[name]
+    #    temp.close()
+
+    #loaded.clear()
 
 
     if debug:print('loading'+str(size)+'\n')

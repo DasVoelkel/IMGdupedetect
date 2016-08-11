@@ -33,5 +33,5 @@ def redraw():
     global ETA
     if progress > allpics:
         progress=allpics
-    bar=int((progress/allpics)*100)
-    print('['+'#'*bar + "."*(100-bar)+"]"+" progress: "+str(progress)+" of "+str(allpics) + "finished in (ETA:)" + str(ETA)+" s",end='\r')
+    bar=int((progress/allpics)*150)
+    print('['+'#'*(bar//20) + "."*(50-bar)+"]"+" progress: "+str(progress)+" of "+str(allpics) + "finished in (ETA:)" + str(ETA)+" s",end='\r')
