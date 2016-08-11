@@ -40,6 +40,7 @@ def checkfordupe(path,dupesim,samplesize,output):
     for sizes in sizelist:
         loaded=check.loadobjects(sizes,sizedictionary)
         for name1 in loaded:
+            bar.incprog()
             if statedictionary[name1]==2 or statedictionary[name1]==1:
                 continue
             statedictionary[name1]=1
@@ -48,7 +49,7 @@ def checkfordupe(path,dupesim,samplesize,output):
 
             #bar.incstep()
             for name2 in loaded:
-                bar.incprog()
+                #bar.incprog()
                 if name1 == name2 or sizedictionary[name1] != sizedictionary[name2] or statedictionary[name2]==1 or statedictionary[name2] == 2 :
                     continue
 
@@ -83,7 +84,7 @@ def checkfordupe(path,dupesim,samplesize,output):
                     log.write(";\n")
             #pic1.close()
 
-        #check.unloadobjects(loaded)
+        check.unloadobjects(loaded)
     if enableoutput:
         data.close()
         log.close()

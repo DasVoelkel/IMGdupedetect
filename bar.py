@@ -13,7 +13,7 @@ def setvalues(setprogress,setpicnr,path):
     ETA = check.ETAcalc(path)
 
     picnr=setpicnr
-    allpics = picnr**2 #how many comparisons there are
+    allpics = picnr #how many comparisons there are
     #print(' '*150,end='\r')
 
 def incprog(): #one compare step at a time
@@ -33,5 +33,5 @@ def redraw():
     global ETA
     if progress > allpics:
         progress=allpics
-    bar=int((progress/allpics)*150)
-    print('['+'#'*(bar//20) + "."*(50-bar)+"]"+" progress: "+str(progress)+" of "+str(allpics) + "finished in (ETA:)" + str(ETA)+" s",end='\r')
+
+    print(str(progress)+" of "+str(allpics),end='\r')
