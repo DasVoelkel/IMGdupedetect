@@ -1,7 +1,8 @@
 import os, sys, inspect, glob
 import dupecheck
 
-from PIL import Image   #I am using Pillow! pip install pillow
+from PIL import Image, ImageFile   #I am using Pillow! pip install pillow
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 import sizesort
 #import check #A intchecker if the input data is ACTUALLY integer
 import io
