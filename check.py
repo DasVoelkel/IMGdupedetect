@@ -57,13 +57,19 @@ def listchecker(sizelist, x, y):
     return sizelist
 
 def piccounter(path):
-
-    fixes=["*.jpg","*.png","*.jpeg","*.JPG","*.PNG","*.JPEG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
+    global debug
+    fixes=[".jpg",".png",".jpeg",".JPG",".PNG",".JPEG",".tif",".tiff",".TIF",".TIFF",".dds",".DDS"]
     count=0  #THIS IS A COUNTER NOT A BOOLEAN!
-    for fix in fixes:
-        for name in glob.glob(path+fix):
+
+    for name in glob.glob(path+"*.*"):
+        #print(name)
+        filename, file_extension = os.path.splitext(name)
+        #print(file_extension)
+        if file_extension in fixes:
             count+=1
 
+
+    if debug:print(count)
     return count
 
 def checkformat(name1,name2):
@@ -104,22 +110,34 @@ def ETAcalc(path):
 def getsizedictionaryandsizelist(path):
     global debug
     if debug :print('creating sizedic/sizelist\n')
-    fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
+    fixes=[".jpg",".JPG",".png",".jpeg",".JPEG",".PNG",".tif",".tiff",".TIF",".TIFF",".dds",".DDS"]
     sizedictionary={}
     sizelist={}
     namelist=[]
-    for fix in fixes:
-        for name in glob.glob(path+fix):
-            if debug:print(name)
+
+    for name in glob.glob(path+"*.*"):
+        filename, file_extension = os.path.splitext(name)
+        if file_extension in fixes:
+            if debug :print(name)
             pic=Image.open(name)
-
-
             sizedictionary[name]=pic.size
-            #pic.convert('RGBA')
-
             sizelist[pic.size]=namelist.append(name)
-
             pic.close()
+
+
+
+    # for fix in fixes:
+    #     for name in glob.glob(path+fix):
+    #         if debug:print(name)
+    #         pic=Image.open(name)
+    #
+    #
+    #         sizedictionary[name]=pic.size
+    #         #pic.convert('RGBA')
+    #
+    #         sizelist[pic.size]=namelist.append(name)
+    #
+    #         pic.close()
             #objectdictionary[name]=pic
 
     if debug:print('done\n')
@@ -165,9 +183,16 @@ def getstatedictionary(path):
     global debug
     if debug:print('creating statedic\n')
     statedictionary={}
-    fixes=["*.jpg","*.JPG","*.png","*.jpeg","*.JPEG","*.PNG","*.tif","*.tiff","*.TIF","*.TIFF","*.dds","*.DDS"]
-    for fix in fixes:
-        for name in glob.glob(path+fix):
-            statedictionary[name] = int(0)
+    fixes=[".jpg",".JPG",".png",".jpeg",".JPEG",".PNG",".tif",".tiff",".TIF",".TIFF",".dds",".DDS"]
+
+    for name in glob.glob(path+'*.*'):
+        filename, file_extension = os.path.splitext(name)
+        if file_extension in fixes:
+            statedictionary[name]=int(0)
+
+
+    # for fix in fixes:
+    #     for name in glob.glob(path+fix):
+    #         statedictionary[name] = int(0)
     if debug:print('done\n')
     return statedictionary
