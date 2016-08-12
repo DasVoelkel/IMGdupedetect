@@ -11,7 +11,14 @@ import time
 
 
 def checkfordupe(path,dupesim,samplesize,output):
-    #print(path)
+    # print(path)
+    # print(dupesim)
+    # print(samplesize)
+    # print(output)
+
+
+
+
     samplesize=float(samplesize)
     dupesim = int(dupesim)
     dupemap={}
