@@ -31,11 +31,12 @@ class GUI(Frame):
 
         image = Image.open("logo.png")
         photo = ImageTk.PhotoImage(image)
-        
+
 
         label1 = Label(self,image=photo)
         label1.image = photo # keep a reference!
         label1.grid(row = 5, column = 0, columnspan = 2, sticky=NW)
+        Label(self, text="all directory paths have to be absolute! \n similarity weird values will be set to 100(such as negatives or >100) \n samplesize default = 16x16 pixels ( other neg vals = -1 )").grid(row = 5, column = 1, sticky=NW)
 
         self.parent.title("zkoor Picturecheck")
 
@@ -46,9 +47,9 @@ class GUI(Frame):
         #self.wm_itle("heyo")
         #label = Label(panel,text="ImgDupeDetect")
         #label.pack()
-        Label(self, text="pic directory").grid(row=0)
+        Label(self, text="pic directory:").grid(row=0)
         Label(self, text="similarity:").grid(row=1)
-        Label(self, text="SampleSize:").grid(row=2)
+        Label(self, text="SampleSize(-1=default 16x16):").grid(row=2)
         Label(self, text="output file:").grid(row=3)
 
         if self.error:
@@ -112,6 +113,11 @@ class GUI(Frame):
 
         if not self.error:
             self.parent.destroy()
+
+            if self.similarity > 100 or self.similarity<0:
+                self.similarity=100
+            if self.samplesize != -1 and self.samplesize < 0:
+                self.samplesize=-1
 
             allpics = check.piccounter(self.path)
             bar.setvalues(0,allpics,self.path)
