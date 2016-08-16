@@ -3,7 +3,7 @@ import dupecheck
 import tkinter
 from tkinter import *
 
-from PIL import Image   #I am using Pillow! pip install pillow
+from PIL import Image,ImageTk   #I am using Pillow! pip install pillow
 import sizesort
 import check #A intchecker if the input data is ACTUALLY integer
 import bar
@@ -26,6 +26,19 @@ class GUI(Frame):
 
     def initialize(self):
         #global error
+
+
+
+        image = Image.open("logo.png")
+        photo = ImageTk.PhotoImage(image)
+        
+
+        label1 = Label(self,image=photo)
+        label1.image = photo # keep a reference!
+        label1.grid(row = 5, column = 0, columnspan = 2, sticky=NW)
+
+        self.parent.title("zkoor Picturecheck")
+
         self.error=False
 
 
@@ -98,7 +111,7 @@ class GUI(Frame):
 
 
         if not self.error:
-            self.destroy()
+            self.parent.destroy()
 
             allpics = check.piccounter(self.path)
             bar.setvalues(0,allpics,self.path)
@@ -109,6 +122,6 @@ class GUI(Frame):
 
 if __name__ == '__main__':
     root = Tk()
-    root.title("Picturecheck")
+
     app = GUI(root)
     root.mainloop()
