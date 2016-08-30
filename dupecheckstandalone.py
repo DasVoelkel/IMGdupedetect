@@ -35,7 +35,7 @@ class GUI(Frame):
 
         label1 = Label(self,image=photo)
         label1.image = photo # keep a reference!
-        label1.grid(row = 5, column = 0, columnspan = 2, sticky=NW)
+        label1.grid(row = 0, column = 0, columnspan = 2, sticky=NW)
         Label(self, text="all directory paths have to be absolute! \n similarity weird values will be set to 100(such as negatives or >100) \n samplesize default = 16x16 pixels ( other neg vals = -1 )").grid(row = 5, column = 1, sticky=NW)
 
         self.parent.title("zkoor Picturecheck")
