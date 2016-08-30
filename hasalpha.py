@@ -52,34 +52,12 @@ def hasalpha(input,output):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     now=0
 
     for name in glob.glob(input+"*.*"):
         now +=1
-        print(str(now)+" of " +str(count))
+        print(" "*20,end='\r')
+        print(str(now)+" of " +str(count)+ " processing : " + name,end='\r')
         #print("opening: "+name)
         o = time.time()
         image=Image.open(name)
