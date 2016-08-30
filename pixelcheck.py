@@ -21,7 +21,7 @@ def pixelcompare(pic1,pic2,samplesize,dupesim):
 
     #pic2=Image.open(name2)
 
-    width, height = pic2.size
+    width, height = pic2.size 
      #pixels
     same=0
     diff=0

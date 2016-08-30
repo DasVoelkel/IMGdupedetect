@@ -14,7 +14,7 @@ def checkfordupe(path,dupesim,samplesize,output):
     # print(path)
     # print(dupesim)
     # print(samplesize)
-    # print(output)
+    # print(output)  #
 
 
 

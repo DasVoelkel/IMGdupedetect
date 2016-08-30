@@ -27,6 +27,12 @@ class GUI(Frame):
     def initialize(self):
         #global error
 
+        canvas = Canvas(self.parent, width=2000, height=1000)
+        canvas.pack()
+        canvas.create_line(0, 0, 200, 100)
+        canvas.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
+        canvas.create_rectangle(50, 25, 150, 75, fill="blue")
+
 
 
         image = Image.open("logo.png")
